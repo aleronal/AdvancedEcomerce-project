@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-dompdf": "^0.9.0",
+        "bumbummen99/shoppingcart": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.6",
@@ -13,7 +15,8 @@
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "stripe/stripe-php": "^7.100"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

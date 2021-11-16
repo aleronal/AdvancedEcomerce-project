@@ -36,7 +36,7 @@ class BrandController extends Controller
 
         Brand::insert([
 
-            'brand_name_en' => $request->brand_name_en,
+            'brand_name_en' => ucwords($request->brand_name_en),
             'brand_name_es' => $request->brand_name_es,
             'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_name_en)),
             'brand_slug_es' => str_replace(' ', '-', $request->brand_name_es),
@@ -62,7 +62,7 @@ class BrandController extends Controller
         {
             // $brand = Brand::findOrFail($id);
 
-            // if you use the hidden field it will be like followin 
+            // if you use the hidden field it will be like following 
 
             $brand_id = $request->id;
             
@@ -81,7 +81,7 @@ class BrandController extends Controller
 
         Brand::findOrFail($brand_id)->update([
            
-            'brand_name_en' => $request->brand_name_en,
+            'brand_name_en' => ucwords($request->brand_name_en),
             'brand_name_es' => $request->brand_name_es,
             'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_name_en)),
             'brand_slug_es' => str_replace(' ', '-', $request->brand_name_es),
