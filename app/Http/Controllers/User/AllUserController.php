@@ -45,6 +45,7 @@ class AllUserController extends Controller
         $order = Order::findOrFail($order_id)->update([
             'return_date' => Carbon::now()->format('d F Y'),
             'return_reason' => $request->return_reason,
+            'return_order' => 1,
         ]);
 
         $notification = array(
@@ -64,7 +65,37 @@ class AllUserController extends Controller
 
     public function CancelledOrderList()
     {
-        $orders = Order::where('user_id', Auth::id())->where('status', 'Cance   led')->orderBy('id', 'DESC')->get();
+        $orders = Order::where('user_id', Auth::id())->where('status', 'Canceled')->orderBy('id', 'DESC')->get();
         return view('frontend.user.orders.cancelled_orders_list',compact('orders'));
     }
+
+    public function OrderTracking(Request $request)
+    {
+        $request->validate([
+            'code' => 'required',
+        ]);
+
+        $invoice = $request->code;
+
+        $track = Order::where('invoice_number', $invoice)->first();
+
+        if($track)
+        {
+           return view('frontend.tracking.track_order',compact('track'));
+            
+        }else{
+
+            $notification = array(
+                'message' => 'Invoice Number is Invalid',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->back()->with($notification);
+    
+        }
+
+    }
+
+
+
 }

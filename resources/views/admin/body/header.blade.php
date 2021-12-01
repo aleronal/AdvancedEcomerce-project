@@ -104,13 +104,21 @@
 
               
               @php   
-              $editData = DB::table('admins')->first();
+             
+              
+              $user = Auth::id();
+              $data = App\Models\Admin::findOrFail(12);
+              
+
               @endphp
+              
 
               <!-- User Account-->
               <li class="dropdown user user-menu">	
                 <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown" title="User">
-                    <img src="{{ (!empty($editData->profile_photo_path)) ? url('upload/admin_images/'.$editData->profile_photo_path) : url('upload/no_image.jpg') }}" alt="">
+                    <img src="{{ $data->profile_photo_path != null
+                    ? asset($data->profile_photo_path) 
+                    : url('upload/no_image.jpg') }}" alt="">
                 </a>
                 <ul class="dropdown-menu animated flipInX">
                   <li class="user-body">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use phpDocumentor\Reflection\Types\This;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\CashController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\User\AllUserController;
@@ -18,10 +19,12 @@ use App\Http\Controllers\User\Checkoutcontroller;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Backend\SiteSettingController;
@@ -302,7 +305,9 @@ Route::group(['prefix'=>'user', 'middleware' =>['user','auth'],'namespace' =>'Us
 
         Route::get('/cancelled/orders/list',[AllUserController::class, 'CancelledOrderList'])->name('cancelled.orders.list');
 
+        // Order Tracking in Home Page 
 
+        Route::post('/order/tracking',[AllUserController::class, 'OrderTracking'])->name('order-tracking');
 
 
 
@@ -459,13 +464,84 @@ Route::get('blog/category/post/{category_id}', [HomeBlogController::class, 'Home
 
 Route::prefix('setting')->group(function(){
 
+    Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site-setting');
 
-Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site-setting');
+    Route::post('/site/update/{id}', [SiteSettingController::class, 'UpdateSiteSetting'])->name('update-site-setting');
 
-Route::post('/site/update/{id}', [SiteSettingController::class, 'UpdateSiteSetting'])->name('update-site-setting');
+    Route::get('/seo', [SiteSettingController::class, 'SeoSetting'])->name('seo-setting');
+
+    Route::post('/seo/update/{id}', [SiteSettingController::class, 'UpdateSeoSetting'])->name('update-seo-setting');
+
+});
+
+// Admin Returned Order Routes
+
+Route::prefix('returned')->group(function(){
+
+    Route::get('/admin/requested', [ReturnController::class, 'ReturnRequested'])->name('return-requested');
+
+    Route::get('/admin/approve/{id}', [ReturnController::class, 'ReturnApproved'])->name('return-approve');
+
+    Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all-request');
+
+});
+
+// Frontend Product Review Route
+
+Route::post('/store/review', [ReviewController::class, 'StoreReview'])->name('store-review');
 
 
+// Admin Manage Review Routes 
 
+Route::prefix('review')->group(function(){
+
+    Route::get('/pending', [ReviewController::class, 'PendingReview'])->name('pending-review');
+
+    Route::get('/approve/{id}', [ReviewController::class, 'ApproveReview'])->name('approve-review');
+
+    Route::get('/approved', [ReviewController::class, 'AllReviewsApproved'])->name('approved-review');
+
+    Route::get('/delete/{id}', [ReviewController::class, 'DeleteReview'])->name('delete-review');
+
+});
+
+// Admin Manage Stock
+
+Route::prefix('stock')->group(function(){
+
+    Route::get('/product', [ProductController::class, 'ProductStock'])->name('product-stock');
 
 
 });
+
+// Admin Manage Admins
+
+Route::prefix('adminuserrole')->group(function(){
+
+    Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all-admin-user');
+
+    Route::get('/add', [AdminUserController::class, 'AddAdminUser'])->name('add-admin');
+
+    Route::post('/store', [AdminUserController::class, 'StoreAdminUser'])->name('store-admin-user');
+
+    Route::get('/edit/{id}', [AdminUserController::class, 'EditAdminUser'])->name('edit-admin-user');
+
+    Route::post('/update', [AdminUserController::class, 'UpdateAdmin'])->name('update-admin-user');
+
+    Route::get('/delete/{id}', [AdminUserController::class, 'DeleteAdmin'])->name('delete-admin-user');
+
+});
+
+
+// Product Search Routes
+
+Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product-search');
+
+// Advanced Search Routes
+
+Route::post('/search-product', [IndexController::class, 'SearchProduct']);
+
+
+
+
+

@@ -18,7 +18,9 @@
                   <h6 class="widget-user-desc">Admin Mail: {{$adminData->email}}</h6>
                 </div>
                 <div class="widget-user-image">
-                <img class="rounded-circle" src="{{ (!empty($adminData->profile_photo_path)) ? url('upload/admin_images/'.$adminData->profile_photo_path) : url('upload/no_image.jpg') }}" >
+                <img class="rounded-circle" src="{{ ($adminData->profile_photo_path != null) 
+                ? asset($adminData->profile_photo_path) 
+                : url('upload/no_image.jpg') }}" >
                 </div>
                 
                 <div class="box-footer">

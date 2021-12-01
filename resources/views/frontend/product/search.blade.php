@@ -1,26 +1,22 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-  Sub Category Produtcs
+  Search Produtcs
 
 @endsection
 
 <div class="breadcrumb">
-      <div class="container">
-        <div class="breadcrumb-inner">
-          <ul class="list-inline list-unstyled">
-            <li><a href="#">Home</a></li>
-            @foreach ($breadsubcat as $item)    
-            <li class='active'>{{$item->category->category_name_en}}</li>
-             
-            <li class='active'>{{$item->subcategory_name_en}}</li>
-            @endforeach
-          </ul>
+        <div class="container">
+          <div class="breadcrumb-inner">
+            <ul class="list-inline list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li class='active'>Handbags</li>
+            </ul>
+          </div>
+          <!-- /.breadcrumb-inner --> 
         </div>
-        <!-- /.breadcrumb-inner --> 
-      </div>
         <!-- /.container --> 
-</div>
+      </div>
       <!-- /.breadcrumb -->
       <div class="body-content outer-top-xs">
         <div class='container'>
@@ -187,6 +183,8 @@
                   <!-- /.container-fluid --> 
                 </div>
               </div>
+
+            <h4><b>Total Products Found </b><span class="badge badge-danger" style="background:blue;">{{count($products)}}</span></h4>
               
            
               <div class="clearfix filters-container m-t-10">

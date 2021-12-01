@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
+use App\Models\Seo;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 
 
@@ -83,10 +84,40 @@ class SiteSettingController extends Controller
               'alert-type' => 'success'
           );
           return redirect()->back()->with($notification);
-  
-
       }
+    }
 
+    public function SeoSetting()
+    {
+      $seo = Seo::findOrFail(1);
+
+      return view('backend.setting.update_seo', compact('seo'));
+    }
+    
+    public function UpdateSeoSetting(Request $request)
+    {
+      $seo = Seo::findOrFail(1);
+
+      $seo->update([
+
+        'meta_title' => $request->meta_title,
+        'meta_author' => $request->meta_author,
+        'meta_description' => $request->meta_description,
+        'meta_keyword' => $request->meta_keyword,
+        'google_analytics' => $request->google_analytics,
+        'updated_at' => Carbon::now(),
+        
+
+      ]);
+
+      $notification = array(
+        'message'=> 'Seo Updated without image Succesfully',
+        'alert-type' => 'success'
+    );
+    return redirect()->back()->with($notification);
 
     }
+
+
+
 }

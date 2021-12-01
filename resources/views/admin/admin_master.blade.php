@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  @php
+    $seo = App\Models\Seo::find(1);
+@endphp
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="{{$seo->meta_description}}">
+    <meta name="author" content="{{$seo->meta_author}}">
     <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
 
     <title>Easy Ecommerce - Dashboard</title>

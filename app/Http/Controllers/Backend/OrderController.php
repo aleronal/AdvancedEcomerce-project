@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Order;
-use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -141,6 +144,15 @@ class OrderController extends Controller
 
     public function ShippedToDelivered($order_id)
     {
+        $product = OrderItem::where('order_id', $order_id)->get();
+
+        foreach($product as $item)
+        {
+            Product::where('id', $item->id)->update([
+                'product_qty' => DB::raw('product_qty-'. $item->qty),
+            ]);
+        }
+
         $order = Order::findOrFail($order_id);
         $order->update([
             'status' => 'Delivered',

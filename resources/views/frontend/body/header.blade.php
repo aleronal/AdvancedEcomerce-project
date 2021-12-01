@@ -16,6 +16,10 @@
                   @else  
                   <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>  
                   @endauth
+
+                  <li><a href="" type="button" data-toggle="modal" data-target="#ordertracking"><i class="icon fa fa-check"></i>Order Tracking</a></li>
+                  <li>
+                  
                  
                 </li>
                 </ul>
@@ -77,7 +81,8 @@
                 <!-- /.contact-row --> 
                 <!-- ============================================================= SEARCH AREA ============================================================= -->
                 <div class="search-area">
-                  <form>
+                  <form method="POST" action={{route('product-search')}}>
+                    @csrf
                     <div class="control-group">
                       <ul class="categories-filter animate-dropdown">
                         <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
@@ -90,9 +95,12 @@
                           </ul>
                         </li>
                       </ul>
-                      <input class="search-field" placeholder="Search here..." />
-                      <a class="search-button" href="#" ></a> </div>
+                      <input id="search" onfocus="search_result_show()"
+                      onblur="search_result_hide()" type="text" class="search-field" name="search" placeholder="Search here..." />
+                      <button type="submit" class="search-button"></button> </div>
                   </form>
+
+                  <div id="searchProducts"></div>
                 </div>
                 <!-- /.search-area --> 
                 <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
@@ -276,5 +284,74 @@
         </div>
         <!-- /.header-nav --> 
         <!-- ============================================== NAVBAR : END ============================================== --> 
+
+        {{-- MODAL TO CHECK ORDER TRACKING --}}
+        
+        <div class="modal fade" id="ordertracking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Track Your Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <form method="POST" action="{{route('order-tracking')}}">
+                  @csrf
+                 
+                  <div class="modal-body">
+                    <label for="">Invoice Code</label>
+                    <input type="text" name="code" required class="form-control" placeholder="Your Order Invoice Number" src="" alt="">
+                  </div>
+
+                  
+                    <button class="btn btn-danger" type="sumbit" style="margin-left:17px;"> Track Now</button>
+                 
+                </form>
+
+              </div>
+             
+            </div>
+          </div>
+        </div>
         
       </header>
+
+
+      <style>
+
+        .search-area{
+          position: relative;
+        }
+
+          #searchProducts {
+            position: absolute;
+            top:100%;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            z-index: 999;
+            border-radius: 8px;
+            margin-top: 5px;
+
+          }
+
+
+      </style>
+
+      <script>
+
+          function search_result_hide()
+          {
+            $("#searchProducts").slideUp();
+
+          }
+
+          function search_result_show(){
+            $("#searchProducts").slideDown();
+
+          }
+
+      </script>

@@ -49,8 +49,38 @@
                                     </td>
                                     <td class="col-md-2">
                                         <label for="">
+                                           
+                                            @if ($order->status == "Pending")
+
                                             <span class="badge badge-pill badge-warning" style="background: #418DB9">
-                                            {{$order->status}}</span></label>
+                                                    {{$order->status}}</span></label>
+
+                                                    
+                                            @elseif($order->status == "Canceled")
+
+                                            <span class="badge badge-pill badge-warning" style="background: red">
+                                                    {{$order->status}}</span></label>
+                                            
+                                             @elseif($order->status == "Delivered")
+
+                                            <span class="badge badge-pill badge-warning" style="background: green">
+                                                    {{$order->status}}</span></label>
+
+                                            @else
+
+
+                                            <span class="badge badge-pill badge-warning" style="background: #418DB9">
+                                                    {{$order->status}}</span></label>
+                                            @endif
+
+                                            @if ($order->return_order == 1)
+
+                                            <span class="badge badge-pill badge-warning" style="background: red;"> Return Requested</span>
+                                                
+                                            @endif  
+
+
+                                            
                                     </td>
                                     <td class="col-md-1">
                                     <a class="btn btn-sm btn-primary" href="{{url('user/details-order/'.$order->id) }}"><i class="fa fa-eye"></i>View</a>

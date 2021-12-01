@@ -34,5 +34,11 @@ class CreateNewUser implements CreatesNewUsers
             'phone' => $input['phone'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $notification = array(
+            'message'=> 'User Created Succesfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('dashboard')->with($notification);
     }
 }
