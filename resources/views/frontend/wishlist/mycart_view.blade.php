@@ -35,7 +35,7 @@
                 </thead>
                 <tbody id="cartPage">
                     
-                        {{-- getting all the data from main master function javascrip  --}}
+                        {{-- getting all the data from main master function javascript  --}}
                         
                    
                     

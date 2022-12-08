@@ -559,14 +559,13 @@ function wishlistRemove(id)
                           <td class="col-md-2">
                             ${value.qty > 1
                             ? `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}"  onclick="CartDecrement(this.id)">-</button>`
-                            
                             : `<button type="submit" class="btn btn-danger btn-sm" disabled>-</button>`
                             }
                            
 
                             <input type="text" id="" value="${value.qty}" min="1" max="100" disabled="" style="width:25px";>
 
-                            <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}"  onclick="CartIncrement(this.id)">+</button>
+                            <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="CartIncrement(this.id)">+</button>
                               
                           </td>
 
@@ -637,6 +636,7 @@ function wishlistRemove(id)
           url:"/cart-increment/" + rowId,
           dataType:'json',
           success:function(data){
+            console.log('added');
             CouponCalculation();
             cart();
             miniCart();
@@ -654,14 +654,13 @@ function wishlistRemove(id)
           url:"/cart-decrement/" + rowId,
           dataType:'json',
           success:function(data){
+            
             CouponCalculation();
             cart();
             miniCart();
           }
         });
     }
-  
-
 
   </script>
 

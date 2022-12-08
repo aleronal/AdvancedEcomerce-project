@@ -96,8 +96,7 @@ class CartPageController extends Controller
         ]);
 
         return response()->json('decrement');
-    }
-
+        }
     
     }
 

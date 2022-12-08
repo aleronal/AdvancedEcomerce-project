@@ -164,8 +164,7 @@
 var stripe = Stripe('pk_test_51Jr4RwETxGMTVanapLpoFbrkIWcmUe9hDZnCXwTk0HCJaIV8VtvzwQrxHr6UpBOBPUurOjDcmvZ15dYfmyTl7o5v005xXqJAK1');
 // Create an instance of Elements.
 var elements = stripe.elements();
-// Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
+// Custom styling passed to options when creating an Element.
 var style = {
   base: {
     color: '#32325d',

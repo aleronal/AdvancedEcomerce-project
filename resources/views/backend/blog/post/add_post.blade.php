@@ -113,7 +113,7 @@
                         <div class="form-group">
                                 <h5>Post Details En <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <textarea id="editor1" name="post_details_en" rows="10" cols="80">
+                                    <textarea id="" name="post_details_en" rows="10" cols="60">
                                     </textarea>
                                 </div>
                         </div>
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                     <h5>Post Details Es <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea id="editor2" name="post_details_es" rows="10" cols="80">
+                                        <textarea id="" name="post_details_es" rows="10" cols="60">
                                         </textarea>
                                     </div>
                             </div>
@@ -135,7 +135,7 @@
                 <hr>
 
             
-                      
+    
                       <div class="text-xs-right">
                           <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Post">
                       </div>

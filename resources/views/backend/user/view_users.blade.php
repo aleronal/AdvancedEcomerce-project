@@ -53,7 +53,7 @@
 
                            
                             <a href="" class="btn btn-info">Edit</a>
-                            <a href="" id="delete" class="btn btn-danger ">Delete</a>
+                            <a href="" id="delete" class="btn btn-danger">Delete</a>
                             </td>
                               
                           </tr>
