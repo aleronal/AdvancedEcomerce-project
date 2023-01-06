@@ -5,13 +5,13 @@
 E-Commerce Project
 This is a e-commerce project built with the Laravel framework. It includes features such as:
 
-Product listings
-Shopping cart
-Checkout with Stripe payment integration
-Order history
-Admin panel for managing products, orders, Categories, sub Categories etc. 
-Admin Panel for managing Website's configuration
-Spanish and English Available.
+- Product listings
+- Shopping cart
+- Checkout with Stripe payment integration
+- Order history
+- Admin panel for managing products, orders, Categories, sub Categories etc. 
+- Admin Panel for managing Website's configuration
+- Spanish and English Available.
 
 
 
